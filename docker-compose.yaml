@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: .
+    container_name: news_php
+    volumes:
+      - '.:/srv'
+    working_dir: /srv
+    networks:
+      - news
+
+  nginx:
+    image: nginx:latest
+    container_name: news_nginx
+    ports:
+      - "8083:80"
+    volumes:
+      - .:/srv
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - news
+
+  postgres:
+    image: postgres:13
+    container_name: news_postgres
+    environment:
+      POSTGRES_USER: news
+      POSTGRES_PASSWORD: news
+      POSTGRES_DB: news
+    ports:
+      - "5437:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - news
+
+  redis:
+    image: redis:latest
+    container_name: news_redis
+    ports:
+      - "6379:6379"
+    networks:
+      - news
+
+volumes:
+  postgres_data:
+
+networks:
+  news:
+    driver: bridge
