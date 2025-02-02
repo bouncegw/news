@@ -57,16 +57,14 @@ class Category
     {
         if (!$this->newsChannels->contains($newsChannel)) {
             $this->newsChannels[] = $newsChannel;
-            $newsChannel->addCategory($this); // Двунаправленная связь
+            $newsChannel->getCategories()->add($this); // Добавляем только с одной стороны
         }
         return $this;
     }
 
     public function removeNewsChannel(NewsChannel $newsChannel): self
     {
-        if ($this->newsChannels->removeElement($newsChannel)) {
-            $newsChannel->removeCategory($this); // Удаляем связь с другой стороны
-        }
+        $this->newsChannels->removeElement($newsChannel); // Удаляем связь только здесь
         return $this;
     }
 
