@@ -25,5 +25,6 @@ class NewsProcessorService
                 return $handler->process($request);
             }
         }
+        //можно , что-то возвращать
     }
 }

@@ -39,6 +39,7 @@ class ParseNewsChannelCommand extends Command
                 $this->bus->dispatch($message);
                 $io->success("Сообщение для $url отправлено в очередь.");
             } catch (\Exception $exception) {
+                //обработать ошибку
                 $io->error("Ошибка: " . $exception->getMessage());
             }
         }

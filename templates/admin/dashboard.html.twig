@@ -1,0 +1,14 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}Welcome to the News Dashboard{% endblock %}
+
+{% block main %}
+    <div class="p-4">
+        <h2>Quick Links</h2>
+        <ul>
+            <li><a href="{{ ea_url().setController('App\\Controller\\Admin\\CategoryCrudController') }}">Manage Categories</a></li>
+            <li><a href="{{ ea_url().setController('App\\Controller\\Admin\\NewsCrudController') }}">Manage News</a></li>
+            <li><a href="{{ ea_url().setController('App\\Controller\\Admin\\NewsChannelCrudController') }}">Manage News Channels</a></li>
+        </ul>
+    </div>
+{% endblock %}

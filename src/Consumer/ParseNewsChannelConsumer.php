@@ -9,12 +9,12 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 class ParseNewsChannelConsumer
 {
-    public function __construct(readonly private ChannelReader $channelApi)
+    public function __construct(readonly private ChannelReader $channelReader)
     {
     }
 
     public function __invoke(SendChannelMessage $message): void
     {
-        $this->channelApi->reader($message->channelUrl);
+        $this->channelReader->read($message->channelUrl);
     }
 }

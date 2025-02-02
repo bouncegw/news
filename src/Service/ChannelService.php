@@ -15,7 +15,7 @@ class ChannelService
     ) {
     }
 
-    public function createChannel(string $name): NewsChannel
+    public function create(string $name): NewsChannel
     {
         $newsChannel = $this->channelRepository->findOneBy(['name' => $name]);
         if ($newsChannel) {

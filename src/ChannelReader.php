@@ -7,6 +7,7 @@ use DOMDocument;
 use Symfony\Component\Messenger\MessageBusInterface;
 use XMLReader;
 
+//TODO НАДО  ДЕТЬ ЭТОТ КЛАСС .
 class ChannelReader
 {
     public function __construct(private readonly MessageBusInterface $bus)
@@ -14,7 +15,7 @@ class ChannelReader
     }
 
     //Парсим частями новости и отправляем сообщения в rmq
-    public function reader(string $channelUrl): void
+    public function read(string $channelUrl): void
     {
         $reader = new XMLReader();
         $reader->open($channelUrl);

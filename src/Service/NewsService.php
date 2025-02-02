@@ -26,7 +26,7 @@ class NewsService
         if ($news = $this->newsRepository->findNewsForTitleAndDate($newsDto->title, $newsDto->date)) {
             return $news;
         }
-        $newsChannel = $this->channelService->createChannel($newsDto->channelUrl);
+        $newsChannel = $this->channelService->create($newsDto->channelUrl);
 
         $category = $this->categoryService->create($newsDto->category,$newsChannel);
 
