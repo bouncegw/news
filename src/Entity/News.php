@@ -14,6 +14,7 @@ class News
     #[ORM\Column]
     private ?int $id = null;
 
+    //todo Повесить индекс уникальности?или не надо
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
@@ -24,6 +25,7 @@ class News
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $createdAt;
 
+    //todo Поменять название
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private ?DateTimeImmutable $parsedAt = null;
 

@@ -6,3 +6,8 @@ controllers:
 admin:
     path: /admin
     controller: App\Controller\Admin\DashboardController::index
+
+
+news:
+    path: /news/api/process
+    controller: App\Api\NewsApiController::createNews

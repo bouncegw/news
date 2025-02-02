@@ -25,5 +25,14 @@ services:
 
     App\Consumer\ParseNewsChannelConsumer: ~
 
+    _instanceof:
+        App\Interface\NewsProcessorInterface:
+            tags: [ 'news.handler' ]
+
+
+    App\Service\NewsProcessorService:
+        arguments:
+            $handlers: !tagged_iterator 'news.handler'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

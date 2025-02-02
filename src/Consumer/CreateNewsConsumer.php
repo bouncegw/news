@@ -2,6 +2,7 @@
 
 namespace App\Consumer;
 
+use App\Dto\NewsCreate\NewsCreateRequest;
 use App\Message\CreateNewsMessage;
 use App\Repository\NewsRepository;
 use App\Service\NewsService;
@@ -24,10 +25,12 @@ class CreateNewsConsumer
         }
 
         $this->newsService->create(
-            channelUrl: $message->channelUrl,
-            title: $message->title,
-            category: $message->category,
-            date: $message->date
+            new NewsCreateRequest(
+                channelUrl: $message->channelUrl,
+                title: $message->title,
+                category: $message->category,
+                date: $message->date
+            )
         );
     }
 }

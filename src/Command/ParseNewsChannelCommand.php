@@ -18,6 +18,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
 )]
 class ParseNewsChannelCommand extends Command
 {
+    //TODO Добавил пока в константу, перевести в бд
     private const CHANNEL_URLS = [
         'https://lenta.ru/rss',
         'https://ria.ru/export/rss2/archive/index.xml'
@@ -39,7 +40,6 @@ class ParseNewsChannelCommand extends Command
                 $io->success("Сообщение для $url отправлено в очередь.");
             } catch (\Exception $exception) {
                 $io->error("Ошибка: " . $exception->getMessage());
-                return Command::FAILURE;
             }
         }
 
