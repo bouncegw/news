@@ -7,7 +7,11 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libzip-dev \
     libicu-dev \
+    librabbitmq-dev \
     && docker-php-ext-install pdo pdo_pgsql zip intl
+
+# Установка расширения AMQP
+RUN pecl install amqp && docker-php-ext-enable amqp
 
 # Установка Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

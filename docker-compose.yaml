@@ -4,7 +4,10 @@ services:
   php:
     build:
       context: .
+      dockerfile: Dockerfile
     container_name: news_php
+    environment:
+      - PHP_EXTENSION=pdo_pgsql
     volumes:
       - '.:/srv'
     working_dir: /srv
@@ -21,6 +24,17 @@ services:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - php
+    networks:
+      - news
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"      # для общения с приложением
+      - "15672:15672"    # для панели управления
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
     networks:
       - news
 
